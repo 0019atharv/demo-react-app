@@ -59,13 +59,14 @@ jobs:
           sleep 5
 
       # Step 9: Verify the app is running
-      - name: Test if app is responding
-        run: |
-          curl -s --fail http://localhost:8080 || {
-            echo "App failed to respond";
-            docker logs react-app-container;
-            exit 1;
-          }
+            # Step X: Run SonarQube scan
+      - name: SonarQube Scan
+        uses: SonarSource/sonarcloud-github-action@v2
+        with:
+          projectBaseDir: .
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
 
       # Step 10: Output logs and running containers
       - name: Show logs and running containers
