@@ -59,11 +59,16 @@ jobs:
           sleep 5
 
       # Step 9: Verify the app is running
-            # Step X: Run SonarQube scan
-      - name: SonarQube Scan
-        uses: SonarSource/sonarcloud-github-action@v2
+           
+  sonarqube:
+    name: SonarQube
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
         with:
-          projectBaseDir: .
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v5
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
