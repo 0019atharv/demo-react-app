@@ -11,7 +11,7 @@ env:
 
 jobs:
   full-pipeline:
-    runs-on: [self-hosted, atharv-runner]
+    runs-on: [atharv-runner]
 
     steps:
       - name: Checkout repository
